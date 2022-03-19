@@ -100,6 +100,6 @@ Resources
 Setup pages
 ============
 
-:doc:`Setup instructions </setup>`
-:doc:`More </other>`
-:doc:`Production test </productiontest>`
+- :doc:`Setup instructions </setup>`
+- :doc:`More </other>`
+- :doc:`Production test </productiontest>`
