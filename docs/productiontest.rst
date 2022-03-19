@@ -2,7 +2,7 @@
 Production test
 =================
 
-This contains instructions on how to test the production system on GKE
+This contains instructions on how to test the deployed production system on GKE
 
 Tools and Specs
 ----------------

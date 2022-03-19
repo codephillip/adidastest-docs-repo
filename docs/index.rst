@@ -32,6 +32,18 @@ Tools
 #. Python3: Used to implement the programming logic in Django microservices
 #. GCP: Used to build and run the k8s production app
 
+
+Github repos
+-------------
+- https://github.com/codephillip/adidas-k8s
+- https://github.com/codephillip/adidas-express-public
+- https://github.com/codephillip/adidas-express-sub
+- https://github.com/codephillip/adidas-express-email
+- https://github.com/codephillip/adidas-django-auth
+- https://github.com/codephillip/adidas-common-lib
+- https://github.com/codephillip/adidastest-docs-repo
+
+
 Microservices
 ---------------
 
@@ -88,11 +100,6 @@ Resources
 Setup pages
 ============
 
-:Setup instructions:
 :doc:`Setup instructions </setup>`
-
-:More:
 :doc:`More </other>`
-
-:Production test:
 :doc:`Production test </productiontest>`
