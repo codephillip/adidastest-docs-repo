@@ -117,7 +117,6 @@ Setting up GKE cluster
 
     .. note:: To switch back to minikube or another context, run ``kubectx minikube``
 
-- Upgrade permissions of the cluster user(foo123-compute@developer.gserviceaccount.com) to owner_. This enables installation of nginx
 - Setup `nginx ingress`_
 - Add ingress to GKE cluster ``kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml``
 - Update skaffold.yaml with GKE configs
@@ -147,19 +146,6 @@ Port forwarding to access NATS
 
 - Get running deployments ``kubectl get deployments``
 - Open NATS port ``kubectl expose deployment foobar-nats-depl --type=LoadBalancer --port 8222 --target-port 8222``
-
-
-Migrating workloads to different machine types
------------------------------------------------
-
-This is a special scenario where you may need to `upgrade or downgrade`_ the node capacity
-
-- Follow the tutorial up to `Creating a node pool with large machine type`_
-- Then move to the GKE dashboard and delete the `node pool` that is no longer required
-
-
-.. _Creating a node pool with large machine type: https://cloud.google.com/kubernetes-engine/docs/tutorials/migrating-node-pool#creating_a_node_pool_with_large_machine_type
-.. _upgrade or downgrade: https://cloud.google.com/kubernetes-engine/docs/tutorials/migrating-node-pool
 
 
 Event-bus(NATS) setup
@@ -313,7 +299,7 @@ Kubernetes
 Clearing space on local dev env
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Delete all docker containers incase system runs out of space``docker system prune``
+* Delete all docker containers incase system runs out of space ``docker system prune``
 * Run ``minikube stop``
 * Run ``minikube start``
 
@@ -322,7 +308,7 @@ Clearing space on local dev env
 Express
 --------
 
-* Deploy `common library` used by express microservices ``npm run pub`` [TODO UPDATE THIS]
+* Deploy `common library` used by express microservices ``npm run pub``
 
 
 kubectl
