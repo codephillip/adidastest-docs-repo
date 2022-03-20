@@ -11,6 +11,7 @@ This is the adidas backend challenge
 Setup pages
 ============
 
+#. :doc:`Architecture diagram </arch>`
 #. :doc:`Setup instructions </setup>`
 #. :doc:`Production test </productiontest>`
 #. :doc:`More </other>`
