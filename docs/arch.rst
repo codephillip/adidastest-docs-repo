@@ -2,7 +2,7 @@
 Architecture diagram
 =================
 
-This contains instructions on how to test the deployed production system on GKE
+Description of the GCP tools used in production
 
 Tools and Specs
 ----------------
@@ -21,6 +21,7 @@ Tools and Specs
 
 
 .. image:: adidasarch.png
-  :width: 600
+  :width: 95%
+  :height: 70%
   :alt: Arch diagram
 
