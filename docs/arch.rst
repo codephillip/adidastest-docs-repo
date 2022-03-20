@@ -22,6 +22,6 @@ Tools and Specs
 
 .. image:: adidasarch.png
   :width: 800
-  :height: 800
+  :height: 600
   :alt: Arch diagram
 
