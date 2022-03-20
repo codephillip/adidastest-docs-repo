@@ -1,8 +1,8 @@
-=================
+=====================
 Architecture diagram
-=================
+=====================
 
-Description of the GCP tools used in production
+Description of the tools used in production
 
 Tools and Specs
 ----------------
@@ -18,6 +18,8 @@ Tools and Specs
 * Google load balancer
 * Google cloud external IP addresses
 * Google cloud DNS
+* Skaffold
+* Travis
 
 
 .. image:: adidasarch.png
