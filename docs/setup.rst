@@ -42,34 +42,65 @@ Localhost development setup
 * Install kubectl ``sudo snap install kubectl --classic``
 * Run ``minikube start``
 * Run ``minikube ip`` then add the ip address to `/etc/hosts` with a custom url. Run ``sudo vim /etc/hosts``. Then add ``x.x.x.x www.testadidas.io``
-* Create the postgres credentials on your local machine
+* Create the postgres credentials_ on your local machine
+
+.. code-block::
+    # create postgres user
+    sudo -u postgres createuser adidasuser
+    # create dbs
+    sudo -u postgres createdb adidasemail
+    sudo -u postgres createdb adidasauth
+    sudo -u postgres createdb adidassub
+    # change user password
+    sudo -u postgres psql
+    alter user adidasuser with encrypted password 'superP4WORD$';
+    GRANT ALL PRIVILEGES ON DATABASE  adidasauth TO adidasuser;
+    GRANT ALL PRIVILEGES ON DATABASE  adidassub TO adidasuser;
+    GRANT ALL PRIVILEGES ON DATABASE  adidasemail TO adidasuser;
+
+* Create a file named ``postgres.yaml`` inside the `adidas-k8s/infra/k8s` folder. This allows minikube to access the postgres running on your local machine. Alternatively_, create Persistent volumes (PV)and Claims (PVC) yaml files
+
+.. code-block::
+
+    kind: Service
+    apiVersion: v1
+    metadata:
+      name: postgres
+      namespace: default
+    spec:
+      type: ExternalName
+      # https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds
+      externalName: host.docker.internal
+      ports:
+        - name: port
+          port: 5432
+
 * Add environment variables
 
 .. code-block::
 
-    kubectl create secret generic postgres-user --from-literal=POSTGRES_USER='adidas-testdb-foobar'
-    kubectl create secret generic postgres-password --from-literal=POSTGRES_PASSWORD='yourtestpassword'
-    kubectl create secret generic postgres-host --from-literal=POSTGRES_HOST='localhost'
+    kubectl create secret generic postgres-user --from-literal=POSTGRES_USER='adidasuser'
+    kubectl create secret generic postgres-password --from-literal=POSTGRES_PASSWORD='superP4WORD$'
+    kubectl create secret generic postgres-host --from-literal=POSTGRES_HOST='127.0.0.1'
     kubectl create secret generic database-type --from-literal=DATABASE_TYPE='test'
-    kubectl create secret generic postgres-sub-db --from-literal=POSTGRES_DB='adidas-test-sub'
-    kubectl create secret generic postgres-email-db --from-literal=POSTGRES_DB='adidas-test-email'
-    kubectl create secret generic postgres-auth-db --from-literal=POSTGRES_DB='adidas-test-auth'
+    kubectl create secret generic postgres-sub-db --from-literal=POSTGRES_DB='adidassub'
+    kubectl create secret generic postgres-email-db --from-literal=POSTGRES_DB='adidasemail'
+    kubectl create secret generic postgres-auth-db --from-literal=POSTGRES_DB='adidasauth'
     kubectl create secret generic api-version --from-literal=API_VERSION='v1'
     kubectl create secret generic secret-key --from-literal=SECRET_KEY='mn871rqc=2v$omiosampfodasmfdbyp62c)4794#y@s4123214'
     kubectl create secret generic debug --from-literal=DEBUG='true'
 
 * Clone main repo ``git clone git@github.com:codephillip/adidas-k8s.git``
 * `Initialize submodules`_ ``git submodule update --init --recursive``
-* Adding secret/env to k8s. ``kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf`` OR create `secret.yaml` and add base64 encoded values using ``$ echo -n "myfoobar" | base64``.
 * Add these environment variables to `.prod.env` or `.dev.env` in express services. NOTE: Do this for all services
 
     .. code-block:: console
 
         TYPEORM_CONNECTION=postgres
-        TYPEORM_DATABASE=foobar-db
-        TYPEORM_USERNAME=adidas-testdb-foobar
-        TYPEORM_PASSWORD=s2e7gvCdG3eGXXX
-        TYPEORM_HOST=localhost
+        TYPEORM_DATABASE=adidasemail
+        TYPEORM_USERNAME=adidasuser
+        TYPEORM_PASSWORD=superP4WORD$
+        TYPEORM_HOST=127.0.0.1
         TYPEORM_ENTITIES=dist/**/*.model.js
         TYPEORM_MIGRATIONS=dist/migrations/*.js
         TYPEORM_MIGRATIONS_DIR=src/migrations
@@ -81,14 +112,17 @@ Localhost development setup
 
     .. code-block:: console
 
-        POSTGRES_DB=adidas-test-email
-        POSTGRES_USER=adidas-testdb-foobar
-        POSTGRES_PASSWORD=s2e7gvCdG3eGxvCJ
-        POSTGRES_HOST=localhost
+        POSTGRES_DB=adidasemail
+        POSTGRES_USER=adidasuser
+        POSTGRES_PASSWORD=superP4WORD$
+        POSTGRES_HOST=127.0.0.1
 
 * Apply the secret object ``kubectl apply -f foobarfolder/secrets.yaml`` if you happen to have a `secrets.yaml` file
 * Enable ingress. ``minikube addons enable ingress``
 * Run ``skaffold dev -f skaffold_dev.yaml`` to start local minikube(k8s) tools
+
+.. _credentials: https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
+.. _Alternatively: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 
 More setup instructions(optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,9 +153,11 @@ Local dev machine setup to push directly to production with skaffold
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Make code changes and push to gitlab
+- Ask for permission to the GCP project from the lead developer
+- Install ``gcloud`` on your local machine
 - Login to gcloud using ``gcloud auth application-default login``
-- Add docker/k8s context by clicking `connect` button and copying the command ``gcloud container clusters get-credentials adidas-cluster1 --zone europe-west6-c --project adidas-317008``
-- Set zone if necessary ``gcloud config set compute/zone us-central1-c``
+- Add docker/k8s context by clicking `connect` button and copying the command ``gcloud container clusters get-credentials adidasttestcluster --zone europe-west2-c --project sixth-loader-344609``
+- Set zone if necessary ``gcloud config set compute/zone europe-west2-c``
 - Add environment variables if not done so already
 
 .. code-block::

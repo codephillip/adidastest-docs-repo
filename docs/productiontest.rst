@@ -6,7 +6,7 @@ This contains instructions on how to test the deployed production system on GKE
 
 Tools and Specs
 ----------------
-* GKE cluster - 1
+* GKE cluster - 1: adidasttestcluster
 * Nodes(compute engine) - 1(due to high cost): gke-adidasttestcluster-default-pool-28f2aa9d-8hh1 with 2CPUs and 3GB
 * Pods - 5(one per service and eventbus)
 * Google cloud build. Triggers a build when code is pushed through skaffold or a build pipeline
@@ -30,6 +30,6 @@ Loading postman
 ~~~~~~~~~~~~~~~~
 
 * Load postman collection by either using this https://www.getpostman.com/collections/b96169c29eb5a9ec6219 or loading the ``Adidas.postman_collection.json`` inside the ``docs`` folder
-* Signup with parameters required.
+* Signup with any sample credentials
 * Sigin with username and password
 * Copy ``access`` token and add it to the postman environment variable ``JWT`` or copy paste it manually into the Authorization header as ``JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9foobar``
