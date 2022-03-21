@@ -5,7 +5,9 @@ Adidas test Documentation
 Introduction
 ============
 
-This is the adidas backend challenge
+This is the adidas backend challenge.
+
+All in all, all the three services; public, email and subscription were created successfully. Evenmore, kubernetes configurations files were created ``infra/k8s`` and CI/CD was also implemented
 
 
 Setup pages
@@ -33,12 +35,16 @@ Tools
 #. MongoDB: Used for storage of temporary and less consistent data
 #. PostgresDB: Used for storage of more permanent and consistent data
 #. NPM CommonLibrary: Used to share commonly reused components between services
+#. Ingress-Nginx: Routes incoming traffic to the services/pods
 #. reStructuredText(rst): Used to write the docs
 #. Markdown: Used to write short docs in the README.md
 #. Django: Used to create web microservice(only authentication service)
 #. Django Rest Framework: Used to create REST api endpoints in Django
 #. Python3: Used to implement the programming logic in Django microservices
 #. GCP: Used to build and run the k8s production app
+#. Github actions. Used these to create the CI/CD pipeline which tests, builds and deploys to production
+#. Travis. Used it run tests
+#. Codecov. Used it to check the coverage and provide a report
 
 
 Github repos

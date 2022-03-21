@@ -52,7 +52,7 @@ Resources
 
 
 Common library management
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 This package manager(npm) is used by the `common library` to ease update of commonly used code ie eventtypes, constants that cut across services, etc
 
@@ -121,7 +121,7 @@ Inbrief these are the steps;
 * Add secret/env to k8s. ``kubectl create secret generic foobar-foo --from-literal=FOOBAR=asdf``
 
 Remove CORS and CSRF warnings(not in production)
---------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For express
 * Add CORS exception. Add ``"cors": "^2.8.5",`` to `package.json`
@@ -269,30 +269,26 @@ Service folder/repo
 Listener services
 ---------------------
 
-* Create ``foobar-listener.ts`` under ``listener if the event is to listen for `foobar`
+* Create ``foobar-listener.ts`` under listener if the event is to listen for `foobar`
 
-    .. code-block:: javascript
+.. code-block:: javascript
 
-        export class EmailNotificationCreatedListener extends Listener<EmailNotificationCreatedEvent> {
-            readonly subject = Subjects.FooBar;
-            readonly queueGroupName = QueueGroupNames.FooBarService;
+    export class EmailNotificationCreatedListener extends Listener<EmailNotificationCreatedEvent> {
+        readonly subject = Subjects.FooBar;
+        readonly queueGroupName = QueueGroupNames.FooBarService;
 
-            async onMessage(data: FooBarEvent['data'], msg: Message) {
+        async onMessage(data: FooBarEvent['data'], msg: Message) {
 
-                const {foo, bar} = data;
+            const {foo, bar} = data;
 
-                //todo perform action here
+            //todo perform action here
 
-                // required to tell the eventbus that the message has been received
-                msg.ack();
-            }
+            // required to tell the eventbus that the message has been received
+            msg.ack();
         }
+    }
 
-* Initialize NATS under ``index.ts`` inside `start()` and add the listener
-
-    .. code-block:: console
-
-        new EmailNotificationCreatedListener(natsWrapper.client).listen();
+* Initialize NATS under ``index.ts`` inside `start()` and add the listener. ``new EmailNotificationCreatedListener(natsWrapper.client).listen();``
 
 
 Publisher services

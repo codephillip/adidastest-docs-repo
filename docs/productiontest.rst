@@ -16,7 +16,7 @@ Tools and Specs
 
 URLS
 -------
-
+* Use this ip address ``34.89.53.39`` to create a custom domain or navigate to the `Services & Ingress`_ tab on GCP console(access required) and copy the ip of the `ingress-nginx-controller` external load balancer.
 * Project url is http://www.testadidas.io , however, since no domain has been bought. Run ``minikube ip`` then add the ip address to /etc/hosts with a custom url. Run ``sudo vim /etc/hosts``. Then add ``34.89.53.39 www.testadidas.io``
 * Swagger url http://www.testadidas.io/api/v1/swagger
 
@@ -24,7 +24,8 @@ URLS
 
 * Nats monitoring_. Helps monitor which events services are listening to.(this port is only open for testing purposes)
 
-.. _monitoring: http://34.71.211.38:8222/streaming/clientsz?offset=0&subs=1
+.. _monitoring: http://34.142.68.230:8222/streaming/clientsz?offset=0&subs=1
+.. _Services & Ingress: https://console.cloud.google.com/kubernetes/discovery?authuser=4&project=sixth-loader-344609&pageState=(%22savedViews%22:(%22i%22:%22ccfb765e11214c61a41b3ef395c0d112%22,%22c%22:%5B%5D,%22n%22:%5B%5D))
 
 Loading postman
 ~~~~~~~~~~~~~~~~
