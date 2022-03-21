@@ -7,7 +7,7 @@ Introduction
 
 This is the adidas backend challenge.
 
-All in all, all the three services; public, email and subscription were created successfully. Evenmore, kubernetes configurations files were created ``infra/k8s`` and CI/CD was also implemented
+All in all, the three services; public, email and subscription were created successfully. Evenmore, kubernetes configurations files were created ``infra/k8s`` and CI/CD was also implemented
 
 
 Setup pages
