@@ -136,6 +136,7 @@ Local dev machine setup to push directly to production with skaffold
     kubectl create secret generic api-version --from-literal=API_VERSION='v1'
     kubectl create secret generic secret-key --from-literal=SECRET_KEY='mn871rqc=2v$e-z9$rvl1m3njf+0byp62c)4794#y@s4y8d3@^*y'
     kubectl create secret generic debug --from-literal=DEBUG='false'
+    kubectl create secret generic node-env --from-literal=NODE_ENV='test'
 
 
 * Add these environment variables to `.prod.env` in express services. NOTE: Do this for all services
@@ -218,6 +219,10 @@ Add more secrets
     GKE_NAMESPACE=default
     GKE_PROJECT=sixth-loader-344609
     GKE_ZONE=europe-west2-c
+    POSTGRES_DB=adidas-test-foobar
+    POSTGRES_USER=adidas-testdb-instance
+    POSTGRES_PASSWORD=s2e7gvCdG3eGxvCJ
+    POSTGRES_HOST=35.189.219.141
 
 * Add these to the top of the ``deploy.yaml`` inside ``.github/workflows`` folder. Use the appropriate container names for each service
 
@@ -258,6 +263,31 @@ The end result of all these steps should result in the creation of deploy.yml an
             os: [ ubuntu-latest ]
         steps:
           - uses: actions/checkout@v2
+          - name: Make .env file
+            uses: SpicyPizza/create-envfile@v1.3.0
+            with:
+              envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+              envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+              envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+              envkey_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+              file_name: .env
+              fail_on_empty: true
+          - name: Make .prod.env file
+            uses: SpicyPizza/create-envfile@v1.3.0
+            with:
+              envkey_TYPEORM_CONNECTION: postgres
+              envkey_TYPEORM_DATABASE: ${{ secrets.POSTGRES_DB }}
+              envkey_TYPEORM_USERNAME: ${{ secrets.POSTGRES_USER }}
+              envkey_TYPEORM_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+              envkey_TYPEORM_HOST: ${{ secrets.POSTGRES_HOST }}
+              envkey_TYPEORM_ENTITIES: dist/**/*.model.js
+              envkey_TYPEORM_MIGRATIONS: dist/migrations/*.js
+              envkey_TYPEORM_MIGRATIONS_DIR: src/migrations
+              envkey_TYPEORM_MIGRATIONS_RUN: true
+              envkey_TYPEORM_SYNCHRONIZE: true
+              envkey_TYPEORM_LOGGING: true
+              file_name: .prod.env
+              fail_on_empty: true
           - name: Deploy
             uses: shashank0202/docker-build-push-gcr-update-gke-deployment-action@v1.0
             with:
