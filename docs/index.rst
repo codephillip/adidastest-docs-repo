@@ -14,8 +14,9 @@ Setup pages
 ============
 
 #. :doc:`Architecture diagram </arch>`
-#. :doc:`Setup instructions </setup>`
 #. :doc:`Production test </productiontest>`
+#. :doc:`Setup instructions </setup>`
+#. :doc:`CICD </cicd>`
 #. :doc:`More </other>`
 
 Tools
