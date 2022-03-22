@@ -20,7 +20,7 @@ Instructions
 Setting up GCLOUD_AUTH variable 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Go to IAM , select service account
+* Go to IAM, select service account
 * Name it, give required premissions and click create key and select JSON. It will download a json file.
 * Run ``cat downloaded_file.json | base64 | tr -d '\n'``
 * Take the output from step 3, and save it in a secret (recommended).

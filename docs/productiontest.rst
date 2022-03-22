@@ -2,7 +2,10 @@
 Production test
 =================
 
-This contains instructions on how to test the deployed production system on GKE
+This contains instructions on how to test the deployed production system on GKE.
+
+.. note:: Due to the high cost of running GKE and all the services it requires, I am using the average specifications to save costs
+
 
 Tools and Specs
 ----------------

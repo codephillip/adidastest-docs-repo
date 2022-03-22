@@ -12,7 +12,7 @@ Project structure
 
 
 File structure architecture
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Every microservice follows these guidelines
 
@@ -133,7 +133,7 @@ More setup instructions(optional)
 .. note:: Sometimes the `skaffold dev` tools may malfunction and stop accepting requests to and from the pods. Such an error may appear ``Error: getaddrinfo *EAI_AGAIN* xyz``. This may occur during npm package installation or when the pod has fully deployed. Quick solution is to run ``minikube stop`` then ``minikube start``. If all else fails run ``docker system prune`` and ``minikube ssh -- docker system prune``
 
 Local dev machine setup to push directly to production with skaffold
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------------------
 
 - Make code changes and push to gitlab
 - Ask for permission to the GCP project from the lead developer
@@ -191,8 +191,11 @@ Local dev machine setup to push directly to production with skaffold
 .. _owner: https://console.cloud.google.com/iam-admin/iam?authuser=1&project=adidas-317008
 .. _permissions: https://console.cloud.google.com/storage/browser/adidas-317008_cloudbuild;tab=permissions?forceOnBucketsSortingFiltering=false&authuser=1&project=adidas-317008&prefix=&forceOnObjectsSortingFiltering=false
 
-Code Update
-~~~~~~~~~~~~~~
+
+Code Update(finally)
+~~~~~~~~~~~~~~~~~~~~~~
+
+These are structions on how I run, test and update the code after it is properly setup on the local machine
 
 * Run ``skaffold dev -f skaffold_dev.yaml`` if not done so already
 * Edit source files in repo
