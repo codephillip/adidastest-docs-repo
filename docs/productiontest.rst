@@ -17,7 +17,7 @@ Tools and Specs
 URLS
 -------
 * Use this ip address ``34.89.53.39`` to create a custom domain or navigate to the `Services & Ingress`_ tab on GCP console(access required) and copy the ip of the `ingress-nginx-controller` external load balancer.
-* Project url is http://www.testadidas.io , however, since no domain has been bought. Run ``minikube ip`` then add the ip address to /etc/hosts with a custom url. Run ``sudo vim /etc/hosts``. Then add ``34.89.53.39 www.testadidas.io``
+* Project url is http://www.testadidas.io , however, since no domain has been bought. Run ``sudo vim /etc/hosts``. Then add ``34.89.53.39 www.testadidas.io``
 * Swagger url http://www.testadidas.io/api/v1/swagger
 
 .. note:: All urls but three in swagger require a JWT token. Its best to use postman

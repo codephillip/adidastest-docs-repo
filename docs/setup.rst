@@ -20,24 +20,24 @@ Every microservice follows these guidelines
 * `Node JS file structure`_
 * `Node JS file structure2`_
 * `Django structure`_
-* `Imagine.ai generator principles`_
 
 .. _12 factor app: https://www.12factor.net/
 .. _Node JS file structure: https://www.codementor.io/@evanbechtol/node-service-oriented-architecture-12vjt9zs9i
 .. _Node JS file structure2: https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf
 .. _Django structure: https://alexkrupp.typepad.com/sensemaking/2021/06/django-for-startup-founders-a-better-software-architecture-for-saas-startups-and-consumer-apps.html
-.. _Imagine.ai generator principles: https://www.imagine.ai/docs/best-practices
 
 
 Localhost development setup
 ----------------------------
 
 * Install essential dependencies
-  * Skaffold_
-  * Minikube
-  * Docker
-  * npm
-  * pip3
+
+    * Skaffold_
+    * Minikube
+    * Docker
+    * npm
+    * pip3
+
 * Install minikube
 * Install kubectl ``sudo snap install kubectl --classic``
 * Run ``minikube start``
@@ -56,11 +56,12 @@ Localhost development setup
     kubectl create secret generic api-version --from-literal=API_VERSION='v1'
     kubectl create secret generic secret-key --from-literal=SECRET_KEY='mn871rqc=2v$omiosampfodasmfdbyp62c)4794#y@s4123214'
     kubectl create secret generic debug --from-literal=DEBUG='true'
+    kubectl create secret generic node-env --from-literal=NODE_ENV='test'
 
 * Or, apply the secret object ``kubectl apply -f foobarfolder/secrets.yaml`` if you happen to have a `secrets.yaml` file
 * Clone main repo ``git clone git@github.com:codephillip/adidas-k8s.git``
 * `Initialize submodules`_ ``git submodule update --init --recursive``
-* We shall use sqlite in memory db for testing, otherwise, create Persistent_ volumes (PV)and Claims (PVC) yaml files for a more consistent database. Add these environment variables to `.prod.env` or `.dev.env` in express services. NOTE: Do this for all express services
+* We shall use sqlite in memory db for testing, otherwise, create Persistent_ volumes (PV)and Claims (PVC) yaml files for a more consistent database. Add these environment variables to or `.dev.env` in express services. NOTE: Do this for all express services
 
 .. code-block:: console
 
@@ -198,9 +199,9 @@ Setting up GCLOUD_AUTH variable
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Go to IAM , select service account
-* Name it, give required premissions and click create key and select JSON. It will download a json file
-* Run this : cat downloaded_file.json | base64 | tr -d '\n'
-* Take the output from step 3, and save it in a secret (recommended). In example below I am saving it as GCLOUD_AUTH.
+* Name it, give required premissions and click create key and select JSON. It will download a json file.
+* Run ``cat downloaded_file.json | base64 | tr -d '\n'``
+* Take the output from step 3, and save it in a secret (recommended).
 * Add the GCLOUD_AUTH to the github secrets
 
 Add more secrets
@@ -233,6 +234,10 @@ Add more secrets
     CONTAINER: adidas-express-email
 
 * Since we can't save the production variables in version control, we have to dynamically_ create them
+
+
+Final result
+~~~~~~~~~~~~~~
 
 The end result of all these steps should result in the creation of deploy.yml and test.yml
 

@@ -1,13 +1,13 @@
-===========================
-Adidas test Documentation
-===========================
+============================================
+Adidas Test Documentation - Phillip Kigenyi
+============================================
 
 Introduction
 ============
 
 This is the adidas backend challenge.
 
-All in all, the three services; public, email and subscription were created successfully. Evenmore, kubernetes configurations files were created ``infra/k8s`` and CI/CD was also implemented
+All in all, the three services; public, email and subscription were created successfully. Evenmore, kubernetes configurations files were created ``infra/k8s`` and CI/CD was also implemented ``.github/workflows``
 
 
 Setup pages
@@ -65,3 +65,14 @@ Microservices
 - adidas-express-sub. Allows users to subscribe to a newsletter or campaign(one public url, the rest are admin access only)
 - adidas-express-email. Allows admins to send emails to the users(admin access only)
 - adidas-django-auth. An authentication service written in django and generates JWT tokens
+
+Contacts
+==============
+
+Incase of any inquiries, please reach me on any of these channels
+
+Email: codephillip@gmail.com
+Phone: +256756878460
+LinkedIn: https://www.linkedin.com/in/kigenyi-phillip-461778101/
+
+
