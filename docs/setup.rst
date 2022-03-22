@@ -42,6 +42,23 @@ Localhost development setup
 * Install kubectl ``sudo snap install kubectl --classic``
 * Run ``minikube start``
 * Run ``minikube ip`` then add the ip address to `/etc/hosts` with a custom url. Run ``sudo vim /etc/hosts``. Then add ``x.x.x.x www.testadidas.io``
+* Create the postgres credentials_ on your local machine
+
+.. code-block::
+
+    # create postgres user
+    sudo -u postgres createuser adidasuser
+    # create dbs
+    sudo -u postgres createdb adidasemail
+    sudo -u postgres createdb adidasauth
+    sudo -u postgres createdb adidassub
+    # change user password
+    sudo -u postgres psql
+    alter user adidasuser with encrypted password 'superP4WORD$';
+    GRANT ALL PRIVILEGES ON DATABASE  adidasauth TO adidasuser;
+    GRANT ALL PRIVILEGES ON DATABASE  adidassub TO adidasuser;
+    GRANT ALL PRIVILEGES ON DATABASE  adidasemail TO adidasuser;
+
 * Add environment variables
 
 .. code-block::
@@ -87,6 +104,7 @@ Localhost development setup
 * Run ``skaffold dev -f skaffold_dev.yaml`` to start local minikube(k8s) tools
 
 .. _Persistent: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+.. _credentials: https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
 
 More setup instructions(optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
