@@ -5,7 +5,7 @@ This contains the local machine project setup instructions
 
 Project structure
 ------------------
-* The project has a master repo called k8s
+* The project has a master repo called ``adidas-k8s``
 * Each microservice is in its own repo and connected to the master repo through `git submodule`
 * Folder `infra` contains k8s configuration files
 * Share code is stored inside adidas-common-lib
