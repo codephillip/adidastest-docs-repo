@@ -33,7 +33,6 @@ Tools
 #. Minikube: Used to run k8s on dev environment
 #. kubectl: Used to manage k8s resources
 #. kubectx: Used to change between k8s contexts ie minikube, gke_foobar
-#. MongoDB: Used for storage of temporary and less consistent data
 #. PostgresDB: Used for storage of more permanent and consistent data
 #. NPM CommonLibrary: Used to share commonly reused components between services
 #. Ingress-Nginx: Routes incoming traffic to the services/pods
